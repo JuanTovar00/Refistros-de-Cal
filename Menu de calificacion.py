@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import json 
 from scipy import stats
 op = 0
 while (op!=5):
@@ -16,6 +17,7 @@ while (op!=5):
         print("Registrar Alumno")
         nom = input("Nombre:")
         Nombre.append([nom])
+    
          
     if (op==2):
         numeroCalificaciones = int(input("Dame el número total de calificaciones: "))
@@ -39,7 +41,7 @@ while (op!=5):
                 print(str(calificaciones[i])+ "calificacion aprobada")
             else:
                 print(str(calificaciones[i])+ "calificacion no aprobada")
-        print()
+    
         print("Los Datos Obtenidos son: ")
         media=np.mean(calificaciones)
         mediana=np.median(calificaciones)
@@ -57,8 +59,16 @@ while (op!=5):
             print(nom)
             
             for i in calificaciones:
-                print(Materias, calificacion)
-        diccionario = {nom, calificacion}
+                print(Materias, calificaciones)
+        datos =json.dumps(Nombre)
+        datosM =json.dumps(Materia)
+        datosC =json.dumps(calificaciones)
+        f = open ('notas.txt', 'w')
+        f.write(datos)
+        f.write(datosM)
+        f.write(datosC)
+        f.close()
+        
         
     if (op==4):
         print("Cerrar")
